@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="/static/compiled.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Number Display</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                background-image: url("static/bg.jpg");
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body class="flex flex-col gap-8">
+        {% include "readouts.html" %}
+        {% include "chart.html" %}
+        {% if "historic_vibration_data" %}
+        <script>window.HISTORIC_VIBRATION_DATA=JSON.parse("{{ historic_vibration_data }}")</script>
+        {% endif %}
+    </body>
+</html>
