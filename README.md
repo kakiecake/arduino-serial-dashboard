@@ -24,7 +24,7 @@ uvicorn main:app --reload
 For tailwindcss to work use npm scripts
 
 ```bash
-npx tailwind:dev
+npx tailwind:watch
 ```
 
 # Building and running
