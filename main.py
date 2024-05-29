@@ -1,20 +1,33 @@
-import asyncio
 from dataclasses import asdict
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import json
+import serial
 
-from serial_reader import AbstractSerialProvider, MockSerialProvider, SerialReader
+from serial_reader import (
+    AbstractSerialProvider,
+    MockSerialProvider,
+    SerialProvider,
+    SerialReader,
+)
+from config import config
+
+config = config()
 
 templates = Jinja2Templates(directory="templates")
-
 app = FastAPI()
-
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-serial_reader = SerialReader(MockSerialProvider())
+serial_provider: AbstractSerialProvider
+if config.serial_port:
+    serial = serial.Serial(config.serial_port, config.serial_port_baudrate, timeout=1)
+    serial_provider = SerialProvider(serial)
+else:
+    serial_provider = MockSerialProvider()
+
+serial_reader = SerialReader(serial_provider)
 
 
 @app.get("/", response_class=HTMLResponse)

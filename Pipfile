@@ -8,6 +8,7 @@ uvicorn = "*"
 fastapi = "*"
 jinja2 = "*"
 pyserial = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

@@ -56,8 +56,8 @@ class SerialProvider(AbstractSerialProvider):
     _current_readouts: SensorReadouts
     _is_reading: bool = False
 
-    def __init__(self) -> None:
-        self._serial = serial.Serial("/dev/ttyACM0", 9800, timeout=1)
+    def __init__(self, serial: serial.Serial) -> None:
+        self._serial = serial
         self._read_sensors_task = asyncio.create_task(self._read_sensors())
 
     def stop_reading(self):

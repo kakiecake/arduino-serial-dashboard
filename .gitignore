@@ -1,2 +1,3 @@
 static/compiled.css
 node_modules
+.env
