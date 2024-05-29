@@ -24,8 +24,9 @@
     <body class="flex flex-col gap-8">
         {% include "readouts.html" %}
         {% include "chart.html" %}
-        {% if "historic_vibration_data" %}
-        <script>window.HISTORIC_VIBRATION_DATA=JSON.parse("{{ historic_vibration_data }}")</script>
-        {% endif %}
+        <script>window.__HISTORIC_DATA= {
+          vibration: JSON.parse("{{ historic_vibration_data }}"),
+          relay: JSON.parse("{{ historic_relay_data }}")
+        }</script>
     </body>
 </html>

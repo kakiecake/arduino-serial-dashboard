@@ -7,21 +7,58 @@
     hx-swap="outerHTML"
 >
     <div>
-        <label class="number-label">Влажность</label>
-        <div class="number">{{ humidity }}%</div>
+        <label>Верхний датчик</label>
+        <div>
+            <label class="number-label">Влажность</label>
+            <div class="number">{{ humidity_one }}%</div>
+        </div>
+        <div>
+            <label class="number-label">Температура</label>
+            <div class="number">{{ temperature_one }}°C</div>
+        </div>
     </div>
     <div>
-        <label class="number-label">Температура</label>
-        <div class="number">{{ temperature }}°C</div>
+        <label>Средний датчик</label>
+        <div>
+            <label class="number-label">Влажность</label>
+            <div class="number">{{ humidity_two }}%</div>
+        </div>
+        <div>
+            <label class="number-label">Температура</label>
+            <div class="number">{{ temperature_two }}°C</div>
+        </div>
     </div>
     <div>
-        <label class="number-label">Наличие вибрации</label>
-        <div class="number">
-            {% if has_vibration %}
-                есть
-            {% else %}
-                нет
-            {% endif %}
+        <label>Нижний датчик</label>
+        <div>
+            <label class="number-label">Влажность</label>
+            <div class="number">{{ humidity_three }}%</div>
+        </div>
+        <div>
+            <label class="number-label">Температура</label>
+            <div class="number">{{ temperature_three }}°C</div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <label class="number-label">Наличие вибрации</label>
+            <div class="number">
+                {% if has_vibration %}
+                    есть
+                {% else %}
+                    нет
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            <label class="number-label">Распыление</label>
+            <div class="number">
+                {% if is_relay_activated %}
+                    включено
+                {% else %}
+                    выключено
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

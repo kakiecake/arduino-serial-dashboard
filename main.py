@@ -21,10 +21,10 @@ serial_reader = SerialReader(MockSerialProvider())
 async def index(request: Request):
     data = asdict(serial_reader.current_readouts)
     data["historic_vibration_data"] = serial_reader.historic_vibration_data
+    data["historic_relay_data"] = serial_reader.historic_relay_data
     return templates.TemplateResponse(
         request=request,
         name="index.html",
-        # headers={"HX-Trigger": json.dumps(htmx_event)},
         context=data,
     )
 
