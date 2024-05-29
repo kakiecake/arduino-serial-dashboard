@@ -20,7 +20,7 @@ def config() -> AppConfig:
     else:
         loaded_config = {}
 
-    serial_port = loaded_config.get("SERIAL_PORT", "/dev/ttyACM0")
+    serial_port = loaded_config.get("SERIAL_PORT", None)
     baudrate = loaded_config.get("SERIAL_PORT_BAUDRATE")
     baudrate = (int(baudrate) or None) if baudrate else None
 
