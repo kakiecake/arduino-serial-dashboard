@@ -6,13 +6,13 @@ from fastapi.staticfiles import StaticFiles
 import json
 import serial
 
-from serial_reader import (
+from .serial_reader import (
     AbstractSerialProvider,
     MockSerialProvider,
     SerialProvider,
     SerialReader,
 )
-from config import config
+from .config import config
 
 config = config()
 

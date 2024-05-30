@@ -1,11 +1,13 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12-slim
+FROM python:3.12-alpine
 
 # Set the working directory in the container to /app
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /app
+COPY ./app /app/app
+COPY ./templates /app/templates
+COPY ./static /app/static
 
 # Install Pipenv, then install dependencies
 RUN pip install pipenv && \
