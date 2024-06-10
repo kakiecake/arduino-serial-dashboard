@@ -1,4 +1,5 @@
 from dataclasses import asdict
+import logging
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -20,14 +21,22 @@ templates = Jinja2Templates(directory="templates")
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 serial_provider: AbstractSerialProvider
+
+logger.info(config)
+
 if config.serial_port:
     serial = serial.Serial(config.serial_port, config.serial_port_baudrate, timeout=1)
-    serial_provider = SerialProvider(serial)
+    logger.info("Using real serial port")
+    serial_provider = SerialProvider(serial, logger)
 else:
+    logger.info("Using mock serial port")
     serial_provider = MockSerialProvider()
 
-serial_reader = SerialReader(serial_provider)
+serial_reader = SerialReader(serial_provider, query_interval_seconds=2)
 
 
 @app.get("/", response_class=HTMLResponse)

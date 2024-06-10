@@ -1,3 +1,4 @@
 static/compiled.css
 node_modules
 .env
+__pycache__/
