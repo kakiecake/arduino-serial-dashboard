@@ -43,8 +43,10 @@ docker run -it \
 	-v $PWD/app:/app/app \
 	-v $PWD/static:/app/static \
 	-v $PWD/templates:/app/templates \
-	-p 8000:80
-  arduino-web:dev
+	-v $PWD/.env:/app/.env \
+	-p 8000:80 \
+	--privileged
+	arduino-web:dev
 ```
 
 
@@ -75,5 +77,5 @@ tailwindcss --output static/compiled.css
 Run the container
 
 ```bash
-docker run -d -p 8000:80 arduino-web:prod
+docker run -d -p 8000:80 --privileged arduino-web:prod
 ```
